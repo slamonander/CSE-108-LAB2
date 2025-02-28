@@ -2,6 +2,9 @@ const display = document.getElementById("result");
 let resetDisplay = false;
 let highlight = null;
 
+let previousResult = null;
+let previousOp = null;
+
 function updateDisplay(input){
     if (resetDisplay) {
         display.value = input;
@@ -26,16 +29,47 @@ function operatorAppend (op, buttonElement) {
     }
 
     highlightOp(buttonElement);
+    previousOp = op;
 }
 
 function clearDisplay(){
     display.value = "";
     resetDisplay = false;
+
+    previousResult = null;
+    previousOp = null;
+
     removeHighlight();
 }
 
 function calculate(){
-    display.value = eval(display.value);
+    const currentResult = parseFloat(display.value);
+    if (previousResult === null) {
+        previousResult = currentResult;
+    } else {
+        if (previousOp) {
+            switch (previousOp) {
+                case "-":
+                    previousResult -=currentResult;
+                    break;
+                case "+":
+                    previousResult +=currentResult;
+                    break;
+                case "*":
+                    previousResult *= currentResult;
+                    break;
+                case "/":
+                    if (currentResult !== 0) {
+                    previousResult /=currentResult;
+                    } else {
+                display.value = "Error"
+                return;
+            } break;
+        }
+        }
+    }
+
+    display.value = previousResult;
 
     resetDisplay = true;
     removeHighlight();
@@ -53,3 +87,4 @@ function removeHighlight() {
         highlight = false;
     }
 }
+
