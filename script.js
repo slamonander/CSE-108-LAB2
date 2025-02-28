@@ -1,5 +1,6 @@
 const display = document.getElementById("result");
 let resetDisplay = false;
+let highlight = null;
 
 function updateDisplay(input){
     if (resetDisplay) {
@@ -12,6 +13,8 @@ function updateDisplay(input){
         display.value += input;
         }
     }
+
+    removeHighlight();
 }
 
 function operatorAppend (op) {
@@ -21,12 +24,30 @@ function operatorAppend (op) {
         display += op;
         resetDisplay = true;
     }
+
+    highlightOp(keys);
 }
 
 function clearDisplay(){
     display.value = "";
+    resetDisplay = false;
+    removeHighlight();
 }
 
 function calculate(){
     display.value = eval(display.value);
+    removeHighlight();
+}
+
+function highlightOp(keys) {
+    removeHighlight();
+    keys.classList.add("highlighted");
+    highlight = keys;
+}
+
+function removeHighlight() {
+    if (highlight) {
+        highlight.classList.remove("highlighted");
+        highlight = false;
+    }
 }
