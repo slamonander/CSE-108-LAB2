@@ -1,3 +1,7 @@
+.highlighted {
+    background-color: purple;
+}
+
 button {
     width: 100px;
     height: 100px;
@@ -7,6 +11,7 @@ button {
     font-size: 2rem;
     font-weight: bold;
 }
+
 
 #keys {
     display: grid;

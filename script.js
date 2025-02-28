@@ -17,15 +17,15 @@ function updateDisplay(input){
     removeHighlight();
 }
 
-function operatorAppend (op) {
+function operatorAppend (op, buttonElement) {
     if (resetDisplay) {
         display.value = display.value.slice(0, -1) + op;
     } else {
-        display += op;
+        display.value += op;
         resetDisplay = true;
     }
 
-    highlightOp(keys);
+    highlightOp(buttonElement);
 }
 
 function clearDisplay(){
@@ -36,13 +36,15 @@ function clearDisplay(){
 
 function calculate(){
     display.value = eval(display.value);
+
+    resetDisplay = true;
     removeHighlight();
 }
 
-function highlightOp(keys) {
+function highlightOp(buttonElement) {
     removeHighlight();
-    keys.classList.add("highlighted");
-    highlight = keys;
+    buttonElement.classList.add("highlighted");
+    highlight = buttonElement;
 }
 
 function removeHighlight() {
