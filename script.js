@@ -16,8 +16,6 @@ function updateDisplay(input){
         display.value += input;
         }
     }
-
-    removeHighlight();
 }
 
 function operatorAppend (op, buttonElement) {
@@ -84,7 +82,8 @@ function highlightOp(buttonElement) {
 function removeHighlight() {
     if (highlight) {
         highlight.classList.remove("highlighted");
-        highlight = false;
+        highlight = null;
     }
 }
 
+console.log(buttonElement)
