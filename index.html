@@ -10,8 +10,11 @@
 <body>
 
     <div id="calculator">
-        <button id="clear" onclick="clearDisplay()">AC</button>
         <input id="result" readonly value="0">
+        <button class="clear" onclick="clearDisplay()">AC</button>
+    
+
+        <div id="keys">
 
         <button class="num" onclick="updateDisplay('7')">7</button>
         <button class="num" onclick="updateDisplay('8')">8</button>
@@ -29,10 +32,11 @@
         <button class="op" onclick="updateDisplay('+')">+</button>
 
         <button class="num" onclick="updateDisplay('0')">0</button>
-        <button class="dec" onclick="updateDisplay('.')">.</button>
-        <button class="equal" onclick="calculate()">=</button>
+        <button class="op" onclick="updateDisplay('.')">.</button>
+        <button class="op" onclick="calculate()">=</button>
         <button class="op" onclick="updateDisplay('/')">/</button>
 
+    </div>
     </div>
     
 </body>
